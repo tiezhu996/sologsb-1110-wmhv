@@ -15,7 +15,7 @@ export interface WoodBoard {
   id: string;
   /** 板材号 */
   boardNo: string;
-  /** 所属琴号：同一琴号下面板与底板配对绑定 */
+  /** 所属琴号：配对后两块共用；空串表示尚未配对（待配对池） */
   guqinNo: string;
   /** 面板 / 底板 */
   part: BoardPart;
@@ -45,8 +45,17 @@ export interface BoardPair {
   guqinNo: string;
   panel?: WoodBoard;
   base?: WoodBoard;
+  /** 同琴号下重复登记的面板（第一个之后的，属冲突，需人工处理） */
+  extraPanels: WoodBoard[];
+  /** 同琴号下重复登记的底板（第一个之后的，属冲突，需人工处理） */
+  extraBases: WoodBoard[];
   species: WoodSpecies | '';
   /** 回显含水率（由阴干年限推算，%） */
   moisturePct: number;
   matched: boolean;
+}
+
+/** 板材是否已配对（占用某个琴号） */
+export function isPaired(board: WoodBoard): boolean {
+  return Boolean(board.guqinNo?.trim());
 }

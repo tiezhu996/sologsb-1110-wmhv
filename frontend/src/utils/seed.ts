@@ -8,7 +8,7 @@ import { cumulativeThickness } from './layer';
 const DAY = 86_400_000;
 const daysAgo = (n: number) => new Date(Date.now() - n * DAY).toISOString();
 
-/** 示例琴坯：5 张琴、10 块板材 */
+/** 示例琴坯：4 副成对琴、1 张缺底板的半成品，外加 3 块待配对板材 */
 export const SEED_BOARDS: WoodBoard[] = [
   { id: 'board-001', boardNo: 'MB-2501', guqinNo: 'Q-2501', part: '面板', species: '桐木', dryYears: 8, thicknessMm: 32, grain: '直纹', defect: '无', receivedAt: daysAgo(120), remark: '河南兰考桐' },
   { id: 'board-002', boardNo: 'MB-2502', guqinNo: 'Q-2501', part: '底板', species: '梓木', dryYears: 6, thicknessMm: 18, grain: '直纹', defect: '无', receivedAt: daysAgo(118) },
@@ -18,8 +18,12 @@ export const SEED_BOARDS: WoodBoard[] = [
   { id: 'board-006', boardNo: 'MB-2506', guqinNo: 'Q-2503', part: '底板', species: '杉木', dryYears: 5, thicknessMm: 18, grain: '直纹', defect: '无', receivedAt: daysAgo(95) },
   { id: 'board-007', boardNo: 'MB-2507', guqinNo: 'Q-2504', part: '面板', species: '杉木', dryYears: 15, thicknessMm: 33, grain: '水波纹', defect: '无', receivedAt: daysAgo(80), remark: '老房料' },
   { id: 'board-008', boardNo: 'MB-2508', guqinNo: 'Q-2504', part: '底板', species: '梓木', dryYears: 9, thicknessMm: 19, grain: '直纹', defect: '无', receivedAt: daysAgo(78) },
-  { id: 'board-009', boardNo: 'MB-2509', guqinNo: 'Q-2505', part: '面板', species: '桐木', dryYears: 2, thicknessMm: 29, grain: '直纹', defect: '裂纹', receivedAt: daysAgo(30), remark: '阴干不足且有裂纹，待退料' },
-  { id: 'board-010', boardNo: 'MB-2510', guqinNo: 'Q-2505', part: '底板', species: '梓木', dryYears: 4, thicknessMm: 17, grain: '直纹', defect: '无', receivedAt: daysAgo(28) },
+  // Q-2505 只录了面板：在配对表显示「缺底板」，可用待配对底板一步补齐
+  { id: 'board-009', boardNo: 'MB-2509', guqinNo: 'Q-2505', part: '面板', species: '桐木', dryYears: 2, thicknessMm: 29, grain: '直纹', defect: '裂纹', receivedAt: daysAgo(30), remark: '阴干不足且有裂纹，暂不可用' },
+  // 以下板材登记时不占琴号，进待配对池，由「合成一副」挑选配对
+  { id: 'board-011', boardNo: 'MB-2511', guqinNo: '', part: '底板', species: '梓木', dryYears: 4, thicknessMm: 17, grain: '直纹', defect: '无', receivedAt: daysAgo(28), remark: '可补 Q-2505 底板' },
+  { id: 'board-012', boardNo: 'MB-2512', guqinNo: '', part: '面板', species: '桐木', dryYears: 6, thicknessMm: 30, grain: '直纹', defect: '无', receivedAt: daysAgo(20) },
+  { id: 'board-013', boardNo: 'MB-2513', guqinNo: '', part: '底板', species: '梓木', dryYears: 5, thicknessMm: 18, grain: '水波纹', defect: '无', receivedAt: daysAgo(18) },
 ];
 
 export const SEED_CHAMBERS: SoundChamber[] = [

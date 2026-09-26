@@ -47,7 +47,7 @@ export function useStageProgress() {
 
   const guqinNos = computed(() => {
     const set = new Set<string>();
-    boardStore.boards.forEach((b) => set.add(b.guqinNo));
+    boardStore.boards.forEach((b) => b.guqinNo && set.add(b.guqinNo));
     chamberStore.chambers.forEach((c) => set.add(c.guqinNo));
     lacquerStore.layers.forEach((l) => set.add(l.guqinNo));
     stringingStore.stringings.forEach((s) => set.add(s.guqinNo));
