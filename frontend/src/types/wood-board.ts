@@ -45,8 +45,14 @@ export interface BoardPair {
   guqinNo: string;
   panel?: WoodBoard;
   base?: WoodBoard;
+  /** 同琴号下重复录入的面板（主面板之外，属于冲突数据，需退回待配对） */
+  extraPanels: WoodBoard[];
+  /** 同琴号下重复录入的底板（主底板之外，属于冲突数据，需退回待配对） */
+  extraBases: WoodBoard[];
   species: WoodSpecies | '';
   /** 回显含水率（由阴干年限推算，%） */
   moisturePct: number;
   matched: boolean;
+  /** 同部位存在重复板材（配对表只认一块，其余挂在明细里） */
+  conflict: boolean;
 }
